@@ -1,0 +1,35 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="mycolor">
+    <ion-title>home</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <span class="cantidad">{{dataCarrito.length}}</span>
+  <button ion-button (click)="goToCart()" class="cart"><ion-icon name="cart"></ion-icon></button>
+  <div class="container">
+    <h3>Lista Productos</h3>
+    <ion-input type="search" placeholder="Buscar por Categoría" (ngModelChange)="changeText()" [(ngModel)]="category"></ion-input>
+    <div class="card" *ngFor="let item of data | paginate : 
+    { itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: count }; 
+    let i = index">
+      <img src="https://www.lenovo.com/medias/lenovo-laptops-thinkbook-16-gen-4-intel-hero.png?context=bWFzdGVyfHJvb3R8MzQ1OTM2fGltYWdlL3BuZ3xoMjEvaGZkLzEzMjU1MTI1OTkxNDU0LnBuZ3xlMGJjMDAyZjIzYzczYmY0YTY3NTlmODcwMDJjZTBhMzg5M2VlMjFlNTNlZWJkZDMyNDA3MTdlNjc3NjhhZWY5">
+      <hr>
+      <div class="card-footer">
+        <div class="col-1">
+           <span class="texto3">Categoria: {{item.category}}</span>
+           <span class="texto">{{item.description}}</span>
+           <span class="texto2">Precio: S/. {{item.price}} </span>
+        </div>
+        <div class="col-1">
+          <button ion-button class="add_cart" (click)="addProduct(item)"><ion-icon name="cart"></ion-icon> Añadir al Carrito</button>
+        </div>
+      </div>
+    </div>
+    <pagination-controls 
+    class="paginator"       
+    previousLabel="Prev"
+    nextLabel="Next"
+    (pageChange)="onChange($event)"></pagination-controls>
+  </div>
+</ion-content>

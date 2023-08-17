@@ -1,0 +1,37 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="mycolor">
+    <ion-title>orders</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="row">
+  <h4 class="texto">Registrate</h4>
+
+     <ion-input type="text" label="Nombres y Apellidos: " placeholder="Ingrese Nombres y Apellidos" [(ngModel)]="name"></ion-input>
+     <ion-input type="text" label="Correo: " placeholder="Correo Electronico" [(ngModel)]="email"></ion-input>
+     <ion-input type="text" label="Contraseña: " placeholder="Ingrese su Contraseña" [(ngModel)]="password"></ion-input>
+
+     <h4 class="texto">Productos</h4>
+
+     <ion-list>
+      <ion-item *ngFor="let item of dataCarrito">
+        <ion-avatar>
+          <img src="https://www.lenovo.com/medias/lenovo-laptops-thinkbook-16-gen-4-intel-hero.png?context=bWFzdGVyfHJvb3R8MzQ1OTM2fGltYWdlL3BuZ3xoMjEvaGZkLzEzMjU1MTI1OTkxNDU0LnBuZ3xlMGJjMDAyZjIzYzczYmY0YTY3NTlmODcwMDJjZTBhMzg5M2VlMjFlNTNlZWJkZDMyNDA3MTdlNjc3NjhhZWY5">
+        </ion-avatar>
+        <ion-label>
+              <h2 class="texto-l"><b>Categoría: </b> {{item.category}}</h2>
+              <h2 class="texto-l"><b>Producto:</b> {{item.description}}</h2>
+              <p class="precio">S/. {{item.price}}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+    <p class="total">Valor Total: S/. {{total | number: '1.2-2'}}</p>
+    <div class="row3">
+      <div class="col-6"><button ion-button [routerLink]="['/home']" class="cart"><ion-icon name="home"></ion-icon> Cancelar</button></div>
+      <div class="col-6"><button ion-button (click)="processOrder()" class="cart"><ion-icon name="card-outline"></ion-icon>  Comprar</button></div>
+    </div>
+  </div>
+
+ 
+</ion-content>

@@ -1,0 +1,42 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="mycolor">
+    <ion-title>cart</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="row" *ngIf="dataCarrito.length == 0">
+    <button ion-button [routerLink]="['/home']" class="cart"><ion-icon name="home"></ion-icon>Aun no has agregado Productos - Inicio</button>
+  </div>
+
+  <div class="row" *ngIf="dataCarrito.length > 0">
+    <ion-list>
+      <ion-list-header>
+        Productos Agregados
+      </ion-list-header>
+      <ion-item *ngFor="let item of dataCarrito">
+        <ion-avatar>
+          <img src="https://www.lenovo.com/medias/lenovo-laptops-thinkbook-16-gen-4-intel-hero.png?context=bWFzdGVyfHJvb3R8MzQ1OTM2fGltYWdlL3BuZ3xoMjEvaGZkLzEzMjU1MTI1OTkxNDU0LnBuZ3xlMGJjMDAyZjIzYzczYmY0YTY3NTlmODcwMDJjZTBhMzg5M2VlMjFlNTNlZWJkZDMyNDA3MTdlNjc3NjhhZWY5">
+        </ion-avatar>
+        <ion-label>
+          <div class="row3">
+            <div class="col-6">
+              <h2 class="texto"><b>Categoría: </b> {{item.category}}</h2>
+              <h2 class="texto"><b>Producto:</b> {{item.description}}</h2>
+              <p class="precio">S/. {{item.price}}</p>
+            </div>
+            <div class="col-6">
+              <button ion-button class="cart" (click)="deleteProduct(item)"><ion-icon name="trash"></ion-icon> Eliminar</button>
+            </div>
+          </div>
+          
+        </ion-label>
+      </ion-item>
+    </ion-list>
+
+    <div class="row2">
+      <div class="col-6"><button ion-button [routerLink]="['/home']" class="cart"><ion-icon name="home"></ion-icon> Seguir Comprando</button></div>
+      <div class="col-6"><button ion-button [routerLink]="['/orders']" class="cart"><ion-icon name="card-outline"></ion-icon> Procesar Compra</button></div>
+    </div>
+  </div>
+</ion-content>
